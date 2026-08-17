@@ -142,3 +142,85 @@ Core Beton functionality is local-only. Notes, configuration, and command result
 ## License
 
 MIT. See `LICENSE`.
+
+## Expanded commands
+
+The current expansion also includes local reminders, file operations, process termination, screenshots, window controls, system information, media, networking, Git shortcuts, plugins, and optional AI commands.
+
+```bash
+beton remind add "Finish physics DPP" --in 30m
+beton remind list
+beton remind done <id>
+
+beton file open report.pdf
+beton file copy report.pdf ~/Desktop
+beton file move report.pdf ~/Documents
+beton file rename report.pdf final-report.pdf
+beton --dry-run file trash report.pdf
+
+beton process
+beton --dry-run kill 1234
+beton --dry-run screenshot --path ~/Pictures/test.png
+beton --dry-run window active
+
+beton --dry-run volume 50
+beton --dry-run media pause
+beton --dry-run battery
+beton --dry-run wifi
+beton --dry-run ip
+beton --dry-run ping example.com
+beton --dry-run dns example.com
+
+beton git status
+beton plugin list
+beton plugin enable weather
+beton clip-set "text"
+beton clip-clear
+beton clip-history
+```
+
+Destructive actions such as trashing a file or terminating a process require confirmation unless `--yes` is explicitly supplied. Use `--dry-run` first.
+
+## Optional AI commands
+
+AI is disabled unless you explicitly provide an API key. The core CLI remains local-first without it.
+
+```bash
+export BETON_AI_API_KEY="your-key"
+export BETON_AI_MODEL="gpt-4o-mini"
+beton ask "What is rotational motion?"
+beton explain "Explain electrostatics simply"
+beton rewrite "make this message more formal"
+beton summarize notes.md
+beton translate "Good morning" --to Hindi
+```
+
+On Windows PowerShell:
+
+```powershell
+$env:BETON_AI_API_KEY = "your-key"
+$env:BETON_AI_MODEL = "gpt-4o-mini"
+beton ask "What is rotational motion?"
+```
+
+AI commands may send the text you provide to the configured provider. Do not use them with private files or clipboard contents unless you understand the provider’s data policies.
+
+## Keeping a local installation synchronized
+
+A normal installation does not automatically update when GitHub changes. To update a checkout installed from this repository:
+
+```bash
+cd beton-cli
+git pull origin main
+python -m pip install -e ".[dev]"
+```
+
+If you installed Beton in editable mode with `python -m pip install -e ".[dev]"`, code changes inside that local checkout are reflected immediately. However, changes made on GitHub still require `git pull`.
+
+If you want a completely isolated installed version, use a regular install instead of editable mode:
+
+```bash
+python -m pip install ".[dev]"
+```
+
+That installed copy must be reinstalled after downloading newer source code.

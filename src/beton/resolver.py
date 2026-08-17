@@ -21,6 +21,17 @@ def resolve_target(target: str) -> ResolvedTarget:
     if is_url(target):
         return ResolvedTarget("url", target, target)
 
+    special_paths = {
+        "home": Path.home(),
+        "downloads": Path.home() / "Downloads",
+        "desktop": Path.home() / "Desktop",
+        "documents": Path.home() / "Documents",
+        "pictures": Path.home() / "Pictures",
+    }
+    special = special_paths.get(target.lower())
+    if special and special.exists():
+        return ResolvedTarget("path", str(special), target)
+
     config = load_config()
     aliases = config.get("aliases", {})
     alias = aliases.get(target.lower())
