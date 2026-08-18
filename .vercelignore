@@ -1,0 +1,13 @@
+# The production deployment is generated exclusively from website/.
+src/
+tests/
+scripts/
+.pytest_cache/
+pyproject.toml
+*.py
+*.pyc
+CHANGELOG.md
+CONTRIBUTING.md
+PRIVACY.md
+SECURITY.md
+todo.md

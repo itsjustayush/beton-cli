@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "framework": null,
+  "installCommand": "npm --prefix website ci",
+  "buildCommand": "npm --prefix website run build",
+  "outputDirectory": "website/dist",
+  "cleanUrls": true
+}

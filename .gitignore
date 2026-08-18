@@ -11,3 +11,5 @@ build/
 htmlcov/
 .DS_Store
 beton-data/
+website/node_modules/
+website/dist/
