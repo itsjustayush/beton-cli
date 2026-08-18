@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "beton-cli"
-version = "0.1.0"
+version = "0.3.3"
 description = "BETON — solid tools for your computer."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "BETON contributors" }]
+authors = [{ name = "Ayush Bhattacharya", email = "info.cometlabs@gmail.com" }]
 dependencies = [
   "typer>=0.12",
   "rich>=13.0",

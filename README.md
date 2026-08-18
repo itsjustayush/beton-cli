@@ -2,13 +2,15 @@
 
 **Your computer, one command away.**
 
+> **Latest release: `v0.3.3`** — [Complete CLI documentation](https://beton-cli.vercel.app/documentation) · [Release notes](https://github.com/itsjustayush/beton-cli/releases/tag/v0.3.3)
+
 BETON is a local-first command layer for everyday computer actions. It provides a short, memorable interface for opening applications and URLs, searching the web, saving notes, starting timers, inspecting the clipboard, checking local capabilities, and controlling selected system actions.
 
 The project is designed to run locally from source. It does not require an account, a server, or cloud storage for its core commands.
 
 ## Current status
 
-This repository contains the first working foundation, version `0.1.0`. It currently supports:
+This repository contains the current published release, version `0.3.3`. It includes the Python CLI, the deployed landing page, the complete command reference, and clean `/documentation` and `/docs` routes. The repository also contains the latest post-release documentation UI refinements. It currently supports:
 
 | Command | Purpose |
 |---|---|
@@ -26,10 +28,14 @@ This repository contains the first working foundation, version `0.1.0`. It curre
 | `beton doctor` | Inspect runtime and detected capabilities. |
 | `beton system <action>` | Dry-run or explicitly invoke lock, sleep, logout, restart, and shutdown actions. |
 
+## Documentation
+
+Read the complete, versioned command reference at [beton-cli.vercel.app/documentation](https://beton-cli.vercel.app/documentation), or use the shorter [beton-cli.vercel.app/docs](https://beton-cli.vercel.app/docs) alias. Release history is available on the [GitHub Releases page](https://github.com/itsjustayush/beton-cli/releases).
+
 ## Installation from source
 
 ```bash
-git clone https://github.com/<owner>/beton-cli.git
+git clone https://github.com/itsjustayush/beton-cli.git
 cd beton-cli
 python -m venv .venv
 # Activate the virtual environment for your shell.
@@ -133,7 +139,7 @@ CLI input
   → Rich or plain renderer
 ```
 
-The next planned additions are reminders, persistent background scheduling, file operations, process management, media controls, network and hardware commands, richer platform adapters, interactive launcher mode, and standalone binaries.
+The next planned additions are reminders, persistent background scheduling, richer file and process operations, media controls, network and hardware commands, richer platform adapters, interactive launcher mode, and standalone binaries. The current `v0.3.3` release focuses on a stable local CLI plus a complete, deployed documentation surface.
 
 ## Privacy
 
