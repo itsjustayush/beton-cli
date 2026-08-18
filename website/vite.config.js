@@ -11,6 +11,7 @@ export default defineConfig({
       input: {
         home: resolve(__dirname, "index.html"),
         docs: resolve(__dirname, "documentation.html"),
+        docsAlias: resolve(__dirname, "docs.html"),
       },
     },
   },
