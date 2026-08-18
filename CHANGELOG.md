@@ -2,6 +2,13 @@
 
 All notable Beton CLI releases are documented here. The project follows Semantic Versioning while it remains below `1.0.0`.
 
+## 0.4.3 — Reliable tag-checkout upgrades
+
+- Fixed `beton version --upgrade` for users installed from a detached release tag.
+- Explicitly fetches `main` into `refs/remotes/origin/main` before switching branches, so a prior `git fetch --tags origin` is sufficient.
+- Added regression coverage for the detached-checkout remote-tracking branch flow.
+- Published as the current [GitHub release v0.4.3](https://github.com/itsjustayush/beton-cli/releases/tag/v0.4.3).
+
 ## 0.4.2 — Simplified Windows workflow
 
 - Added a one-command `scripts/install.ps1` setup path that works without activating `Activate.ps1`.

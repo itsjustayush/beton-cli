@@ -1,5 +1,9 @@
+import subprocess
+
+import pytest
 from typer.testing import CliRunner
 
+import beton.upgrade as upgrade_module
 from beton.cli import app
 from beton.upgrade import UpgradeResult
 
@@ -44,7 +48,7 @@ def test_search_private_default_browser_is_rejected():
 def test_version_command_preserves_version_output():
     result = runner.invoke(app, ["--plain", "version"])
     assert result.exit_code == 0
-    assert result.stdout.strip() == "BETON 0.4.2"
+    assert result.stdout.strip() == "BETON 0.4.3"
 
 
 def test_version_upgrade_dry_run(monkeypatch, tmp_path):
@@ -60,3 +64,31 @@ def test_version_upgrade_dry_run(monkeypatch, tmp_path):
     assert result.exit_code == 0
     assert "Would check GitHub and update" in result.stdout
     assert "01234567" in result.stdout
+
+
+def test_detached_upgrade_fetches_remote_tracking_branch(monkeypatch, tmp_path):
+    calls = []
+    revisions = iter(["before", "after"])
+
+    def fake_git(root, *args, check=True):
+        calls.append(args)
+        if args[:3] == ("remote", "get-url", "origin"):
+            stdout = "https://github.com/itsjustayush/beton-cli.git\n"
+        elif args[:2] == ("branch", "--show-current"):
+            stdout = ""
+        elif args[:2] == ("rev-parse", "HEAD"):
+            stdout = f"{next(revisions)}\n"
+        else:
+            stdout = ""
+        return subprocess.CompletedProcess(["git", *args], 0, stdout=stdout, stderr="")
+
+    monkeypatch.setattr(upgrade_module, "repository_root", lambda: tmp_path)
+    monkeypatch.setattr(upgrade_module, "_git", fake_git)
+    monkeypatch.setattr(upgrade_module, "_assert_clean", lambda root: None)
+    monkeypatch.setattr(upgrade_module, "_install_current_checkout", lambda root: None)
+
+    result = upgrade_module.upgrade()
+
+    assert result.changed is True
+    assert ("fetch", "origin", "main:refs/remotes/origin/main", "--depth=1") in calls
+    assert ("checkout", "-B", "main", "refs/remotes/origin/main") in calls

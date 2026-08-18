@@ -116,8 +116,9 @@ def upgrade(*, dry_run: bool = False) -> UpgradeResult:
     if branch:
         _git(root, "pull", "--ff-only", "origin", DEFAULT_BRANCH)
     else:
-        _git(root, "fetch", "origin", DEFAULT_BRANCH, "--depth=1")
-        _git(root, "checkout", "-B", DEFAULT_BRANCH, f"origin/{DEFAULT_BRANCH}")
+        remote_ref = f"refs/remotes/origin/{DEFAULT_BRANCH}"
+        _git(root, "fetch", "origin", f"{DEFAULT_BRANCH}:{remote_ref}", "--depth=1")
+        _git(root, "checkout", "-B", DEFAULT_BRANCH, remote_ref)
     after = _git(root, "rev-parse", "HEAD").stdout.strip()
     if after != before:
         try:
