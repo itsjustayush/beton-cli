@@ -2,6 +2,15 @@
 
 All notable Beton CLI releases are documented here. The project follows Semantic Versioning while it remains below `1.0.0`.
 
+## 0.4.1 — Windows-safe source installation
+
+- Removed mandatory PowerShell activation from the Windows installation path.
+- Added direct `.venv\\Scripts\\python.exe` and `.venv\\Scripts\\beton.exe` commands that work without changing PowerShell execution policy.
+- Added explicit Python installation and PATH guidance for Windows, including the `py` and `python` command failure case.
+- Clarified that the annotated-tag warning from a shallow `git clone` is nonfatal when Git exits successfully and switches to a commit.
+- Added direct Windows executable examples for `beton version --upgrade`, `--yes`, and `--dry-run`.
+- Published as the current [GitHub release v0.4.1](https://github.com/itsjustayush/beton-cli/releases/tag/v0.4.1).
+
 ## 0.4.0 — Safe source-checkout upgrades
 
 - Added `beton version` as a read-only subcommand that reports the installed version.
