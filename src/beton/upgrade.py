@@ -106,7 +106,7 @@ def upgrade(*, dry_run: bool = False) -> UpgradeResult:
     """Fast-forward the official source checkout and refresh the active environment."""
 
     root = repository_root()
-    _assert_official_checkout(root)
+    branch = _assert_official_checkout(root)
     _assert_clean(root)
     before = _git(root, "rev-parse", "HEAD").stdout.strip()
 
