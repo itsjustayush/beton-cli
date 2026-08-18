@@ -10,7 +10,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         home: resolve(__dirname, "index.html"),
-        docs: resolve(__dirname, "Beton CLI Docs.html"),
+        docs: resolve(__dirname, "documentation.html"),
       },
     },
   },

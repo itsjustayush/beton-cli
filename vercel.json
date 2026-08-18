@@ -4,5 +4,15 @@
   "installCommand": "npm --prefix website ci",
   "buildCommand": "npm --prefix website run build",
   "outputDirectory": "website/dist",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/documentation",
+      "destination": "/documentation.html"
+    },
+    {
+      "source": "/docs",
+      "destination": "/documentation.html"
+    }
+  ]
 }
