@@ -193,7 +193,7 @@
     <header class="topbar">
       <button class="icon-button mobile-menu" id="menu-toggle" aria-label="Toggle navigation">☰</button>
       <a class="brand" href="#top"><span class="brand-mark"></span>Beton</a>
-      <div class="topbar-context"><a class="back-link" href="/">← Landing page</a><span class="topbar-section">CLI documentation / v0.3.3</span></div>
+      <div class="topbar-context"><a class="back-link" href="/">← Landing page</a><span class="topbar-section">CLI documentation / v0.3.4</span></div>
       <div class="topbar-actions">
         <button class="icon-button" id="search-toggle" aria-label="Search documentation">⌕ <span>Search</span></button>
         <button class="icon-button" id="theme-toggle" aria-label="Toggle theme">◐</button>
@@ -216,10 +216,10 @@
             <p class="kicker">Local-first command layer</p>
             <h1>Beton CLI Docs</h1>
             <p class="lead">Beton is a local-first command-line tool for opening apps and URLs, searching the web, saving notes, running timers, reading the clipboard, inspecting the machine, and controlling selected system actions.</p>
-            <p>Everything runs on your computer. There is no account, server, API key, or cloud storage requirement for core commands. Install it once with <code>pip install beton-cli</code>, then use the short <code>beton</code> command from Windows, macOS, or Linux.</p>
+            <p>Everything runs on your computer. There is no account, server, API key, or cloud storage requirement for core commands. Beton is distributed as source from the official GitHub repository. Clone the tagged <code>v0.3.4</code> release, install it into a virtual environment, and then use the short <code>beton</code> command from Windows, macOS, or Linux.</p>
 
             <div class="hero-grid">
-              <a class="card" href="#installation"><span class="card-icon">↓</span><h3>Installation</h3><p>Install from PyPI or source, then verify the environment with <code>beton doctor</code>.</p></a>
+              <a class="card" href="#installation"><span class="card-icon">↓</span><h3>Installation</h3><p>Clone the official v0.3.4 GitHub release, install locally in a virtual environment, then run <code>beton doctor</code>.</p></a>
               <a class="card" href="#quickstart"><span class="card-icon">→</span><h3>Quickstart</h3><p>Go from zero to your first open, search, note, timer, and diagnostics command.</p></a>
               <a class="card" href="#open"><span class="card-icon">↗</span><h3>Command reference</h3><p>Explore every command, argument, flag, resolution rule, and safety boundary.</p></a>
               <a class="card" href="#global-flags"><span class="card-icon">⌘</span><h3>Guides &amp; flags</h3><p>Learn browser selection, dry runs, plain output, storage, aliases, and troubleshooting.</p></a>
@@ -228,28 +228,29 @@
 
           <section id="installation">
             <h2>Installation <a class="anchor-link" href="#installation">#</a></h2>
-            <p>Beton requires Python 3.10 or later and installs as a single <code>beton</code> executable. PyPI is the fastest path for using the stable package. Installing from source is better when you want to contribute or follow development.</p>
+            <p>Beton requires Python 3.10 or later. It is not currently distributed as a PyPI package: use the official tagged source release from GitHub and install it locally into a virtual environment. Do not run <code>pip install beton</code> or <code>pip install beton-cli</code>.</p>
+            <div class="callout note"><strong>Official source release</strong><p>Use <a href="https://github.com/itsjustayush/beton-cli/releases/tag/v0.3.4" target="_blank" rel="noreferrer">Beton CLI v0.3.4 on GitHub</a>. The commands below install from the cloned repository, not from PyPI.</p></div>
             <h3>Prerequisites <a class="anchor-link" href="#prerequisites">#</a></h3>
             <p>Check that Python and pip are available in the shell where you plan to install Beton.</p>
             <div class="code-wrap"><div class="code-head"><span>Check prerequisites</span><button class="copy">Copy</button></div><pre><code>python --version
 python3 --version
 pip --version</code></pre></div>
-            <h3>Install from PyPI <a class="anchor-link" href="#install-from-pypi">#</a></h3>
-            <div class="code-wrap"><div class="code-head"><span>Recommended</span><button class="copy">Copy</button></div><pre><code>pip install beton-cli</code></pre></div>
-            <p>This installs the latest stable release globally or into the active virtual environment. If pip reports a user-level installation, use a virtual environment or add <code>--user</code> as appropriate for your Python setup.</p>
-            <h3>Install from source <a class="anchor-link" href="#install-from-source">#</a></h3>
-            <div class="code-wrap" data-lang="shell"><div class="code-head"><span>Linux / macOS · clone and install</span><button class="copy">Copy</button></div><pre><code>git clone https://github.com/itsjustayush/beton-cli.git
+            <h3>Install the published source release <a class="anchor-link" href="#install-from-release">#</a></h3>
+            <div class="code-wrap" data-lang="shell"><div class="code-head"><span>Linux / macOS · v0.3.4</span><button class="copy">Copy</button></div><pre><code>git clone --branch v0.3.4 --depth 1 https://github.com/itsjustayush/beton-cli.git
 cd beton-cli
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
-pip install -e ".[dev]"
+python -m pip install .
 beton doctor</code></pre></div>
-            <div class="code-wrap" data-lang="powershell"><div class="code-head"><span>Windows PowerShell · clone and install</span><button class="copy">Copy</button></div><pre><code>git clone https://github.com/itsjustayush/beton-cli.git
+            <div class="code-wrap" data-lang="powershell"><div class="code-head"><span>Windows PowerShell · v0.3.4</span><button class="copy">Copy</button></div><pre><code>git clone --branch v0.3.4 --depth 1 https://github.com/itsjustayush/beton-cli.git
 Set-Location beton-cli
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install -e ".[dev]"
+python -m pip install .
 beton doctor</code></pre></div>
+            <p>The install command above uses pip only as the local build installer for the cloned source tree. It does not download Beton from PyPI.</p>
+            <h3>Development install <a class="anchor-link" href="#install-development">#</a></h3>
+            <div class="code-wrap"><div class="code-head"><span>Optional test dependencies</span><button class="copy">Copy</button></div><pre><code>python -m pip install -e ".[dev]"</code></pre></div>
             <p>For a quick checkout without installing an editable package, run the module directly from the repository:</p>
             <div class="code-wrap"><div class="code-head"><span>Run from source</span><button class="copy">Copy</button></div><pre><code>PYTHONPATH=src python -m beton --help</code></pre></div>
             <div class="callout note"><strong>Custom data location</strong><p>Set <code>BETON_HOME</code> before invoking Beton to isolate tests or keep local data in a directory of your choice.</p></div>
@@ -427,7 +428,7 @@ beton --help
 beton open --help
 beton search --help
 beton --version
-# Output example: BETON 0.3.3</code></pre></div>
+# Output example: BETON 0.3.4</code></pre></div>
             <p><code>beton help</code> presents a compact table of core commands and examples. <code>--help</code> shows command-specific arguments and flags. <code>--version</code> prints the installed version and exits.</p>
           </section>
 
@@ -523,12 +524,14 @@ beton config set plain false</code></pre></div>
           <section id="troubleshooting">
             <h2>Troubleshooting <a class="anchor-link" href="#troubleshooting">#</a></h2>
             <p>When in doubt, start with <code>beton doctor</code>. It reports Python, platform, data-directory, path-opener, and browser capabilities in one place.</p>
-            <h3><code>beton: command not found</code> <a class="anchor-link" href="#command-not-found">#</a></h3><p>Beton may not be installed in the active Python environment, or the directory where pip writes CLI entry points may not be on <code>PATH</code>.</p><div class="code-wrap"><div class="code-head"><span>Repair steps</span><button class="copy">Copy</button></div><pre><code>pip show beton-cli
+            <h3><code>beton: command not found</code> <a class="anchor-link" href="#command-not-found">#</a></h3><p>Beton may not be installed in the active virtual environment, or the environment’s script directory may not be on <code>PATH</code>. Beton is installed from the official GitHub source release, not from PyPI.</p><div class="code-wrap"><div class="code-head"><span>Repair from the official checkout</span><button class="copy">Copy</button></div><pre><code>cd beton-cli
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install .
 python -m beton --help
-pip install beton-cli
 
-# Linux user-local scripts may live here:
-~/.local/bin</code></pre></div><p>Activate the correct virtual environment before invoking <code>beton</code>.</p>
+# Confirm the installed source version
+beton --version</code></pre></div><p>On Windows PowerShell, activate with <code>\.\.venv\Scripts\Activate.ps1</code>. If you are using a development checkout, replace <code>python -m pip install .</code> with <code>python -m pip install -e ".[dev]"</code>.</p>
             <h3>Clipboard access fails <a class="anchor-link" href="#clipboard-fails">#</a></h3><p>Linux clipboard access typically needs <code>xclip</code> or <code>xsel</code>. Install one with your package manager, then rerun <code>beton doctor</code>.</p><div class="code-wrap"><div class="code-head"><span>Ubuntu / Debian</span><button class="copy">Copy</button></div><pre><code>sudo apt install xclip
 # or
 sudo apt install xsel</code></pre></div>

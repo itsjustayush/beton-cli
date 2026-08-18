@@ -2,7 +2,7 @@
 
 **Your computer, one command away.**
 
-> **Latest release: `v0.3.3`** — [Complete CLI documentation](https://beton-cli.vercel.app/documentation) · [Release notes](https://github.com/itsjustayush/beton-cli/releases/tag/v0.3.3)
+> **Latest release: `v0.3.4`** — [Complete CLI documentation](https://beton-cli.vercel.app/documentation) · [Release notes](https://github.com/itsjustayush/beton-cli/releases/tag/v0.3.4)
 
 BETON is a local-first command layer for everyday computer actions. It provides a short, memorable interface for opening applications and URLs, searching the web, saving notes, starting timers, inspecting the clipboard, checking local capabilities, and controlling selected system actions.
 
@@ -10,7 +10,7 @@ The project is designed to run locally from source. It does not require an accou
 
 ## Current status
 
-This repository contains the current published release, version `0.3.3`. It includes the Python CLI, the deployed landing page, the complete command reference, and clean `/documentation` and `/docs` routes. The repository also contains the latest post-release documentation UI refinements. It currently supports:
+This repository contains the current published release, version `0.3.4`. It includes the Python CLI, the deployed landing page, the complete command reference, and clean `/documentation` and `/docs` routes. The repository also contains the latest post-release documentation UI refinements. It currently supports:
 
 | Command | Purpose |
 |---|---|
@@ -32,18 +32,41 @@ This repository contains the current published release, version `0.3.3`. It incl
 
 Read the complete, versioned command reference at [beton-cli.vercel.app/documentation](https://beton-cli.vercel.app/documentation), or use the shorter [beton-cli.vercel.app/docs](https://beton-cli.vercel.app/docs) alias. Release history is available on the [GitHub Releases page](https://github.com/itsjustayush/beton-cli/releases).
 
-## Installation from source
+## Installation from the official GitHub release
+
+Beton is **not currently published as a PyPI package**. Do not run `pip install beton` or `pip install beton-cli`. Download the official tagged source release from the [Beton CLI GitHub repository](https://github.com/itsjustayush/beton-cli) instead.
+
+### Linux and macOS
+
+The following installs the published `v0.3.4` source release into an isolated virtual environment:
 
 ```bash
-git clone https://github.com/itsjustayush/beton-cli.git
+git clone --branch v0.3.4 --depth 1 https://github.com/itsjustayush/beton-cli.git
 cd beton-cli
-python -m venv .venv
-# Activate the virtual environment for your shell.
-python -m pip install -e ".[dev]"
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install .
 beton doctor
 ```
 
-For a quick local checkout without an editable install:
+### Windows PowerShell
+
+```powershell
+git clone --branch v0.3.4 --depth 1 https://github.com/itsjustayush/beton-cli.git
+Set-Location beton-cli
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install .
+beton doctor
+```
+
+For development or test dependencies, run the following from the cloned repository after activating the virtual environment:
+
+```bash
+python -m pip install -e ".[dev]"
+```
+
+The repository also includes `scripts/install.sh` for Linux/macOS and `scripts/install.ps1` for PowerShell. For a quick checkout without installing the package, run the module directly from the repository:
 
 ```bash
 PYTHONPATH=src python -m beton --help
@@ -139,7 +162,7 @@ CLI input
   → Rich or plain renderer
 ```
 
-The next planned additions are reminders, persistent background scheduling, richer file and process operations, media controls, network and hardware commands, richer platform adapters, interactive launcher mode, and standalone binaries. The current `v0.3.3` release focuses on a stable local CLI plus a complete, deployed documentation surface.
+The next planned additions are reminders, persistent background scheduling, richer file and process operations, media controls, network and hardware commands, richer platform adapters, interactive launcher mode, and standalone binaries. The current `v0.3.4` release focuses on a stable local CLI plus a complete, deployed documentation surface.
 
 ## Privacy
 

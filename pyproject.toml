@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "beton-cli"
-version = "0.3.3"
+version = "0.3.4"
 description = "BETON — solid tools for your computer."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -14,6 +14,12 @@ dependencies = [
   "typer>=0.12",
   "rich>=13.0",
 ]
+
+[project.urls]
+Homepage = "https://beton-cli.vercel.app/"
+Repository = "https://github.com/itsjustayush/beton-cli"
+Documentation = "https://beton-cli.vercel.app/documentation"
+Releases = "https://github.com/itsjustayush/beton-cli/releases"
 
 [project.optional-dependencies]
 dev = [

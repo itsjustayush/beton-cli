@@ -2,12 +2,14 @@
 
 All notable Beton CLI releases are documented here. The project follows Semantic Versioning while it remains below `1.0.0`.
 
-## Unreleased — Documentation UI refinement
+## 0.3.4 — Corrected source installation and documentation
 
-- Replaced orange-heavy emphasis with a calmer blue-gray visual system.
-- Improved the documentation navbar, responsive layout, motion behavior, inline code styling, and code-panel readability.
-- Added dedicated Linux/macOS and Windows PowerShell examples with clearer terminal treatment.
-- Added reduced-motion support for accessibility.
+- Corrected the README and deployed documentation to state that Beton is not currently distributed as a PyPI package.
+- Added official GitHub source installation instructions pinned to the `v0.3.4` tag for Linux/macOS and Windows PowerShell.
+- Clarified that pip is used only to install the cloned local source tree, not to download Beton from PyPI.
+- Synchronized package metadata, runtime version output, landing-page release labels, documentation examples, and project URLs.
+- Refined the documentation UI with clearer code panels, separate PowerShell examples, calmer emphasis, and accessible motion behavior.
+- Published as the current [GitHub release v0.3.4](https://github.com/itsjustayush/beton-cli/releases/tag/v0.3.4).
 
 ## 0.3.3 — Documentation route alias
 
