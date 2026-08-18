@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability report
+    url: https://github.com/itsjustayush/beton-cli/security/advisories/new
+    about: Please report suspected security vulnerabilities privately.
+  - name: Documentation
+    url: https://beton-cli.vercel.app/documentation
+    about: Read the complete command reference before opening a usage question.
+  - name: Discussions
+    url: https://github.com/itsjustayush/beton-cli/discussions
+    about: Propose broader ideas or ask questions about the project direction.

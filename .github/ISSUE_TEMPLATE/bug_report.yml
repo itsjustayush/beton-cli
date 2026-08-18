@@ -1,0 +1,71 @@
+name: Bug report
+description: Report an implementation defect or unexpected command behavior.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve BETON. Please remove secrets and sensitive local paths from your report.
+  - type: input
+    id: version
+    attributes:
+      label: BETON version
+      description: Run `beton --version` and paste the result.
+      placeholder: "BETON 0.3.4"
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Operating system
+      placeholder: "Ubuntu 24.04 / macOS 15 / Windows 11"
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: "Python 3.12.4"
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command or workflow
+      description: Include the command with secrets, tokens, and private paths redacted.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Clone or install the project.
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I have removed secrets, credentials, tokens, and private local data.
+          required: true
+        - label: This report does not disclose an unpatched security vulnerability. If it does, I will use the private security channel instead.
+          required: true

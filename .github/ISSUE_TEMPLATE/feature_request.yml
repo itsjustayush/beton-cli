@@ -1,0 +1,51 @@
+name: Feature request
+description: Propose a focused improvement to the BETON command layer.
+title: "feat: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Strong proposals explain the user problem first and keep BETON's local-first, explicit-action model in mind.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What repetitive or difficult computer action should become easier?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed experience
+      description: Show the command or workflow you have in mind.
+      placeholder: |
+        beton <command> <arguments>
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What do you use today, and why is it insufficient?
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform scope
+      options:
+        - Linux
+        - macOS
+        - Windows
+        - Cross-platform
+        - Documentation or website only
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Design considerations
+      options:
+        - label: The proposal can preserve explicit confirmation for disruptive actions.
+        - label: The proposal can work without requiring a cloud account or remote storage.
+        - label: I have checked the existing documentation and command surface first.
