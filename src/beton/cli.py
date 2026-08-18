@@ -24,6 +24,7 @@ from .search import SEARCH_URLS, build_search_url
 from .storage.notes import add_note, today_notes
 from .timer import format_duration, parse_duration
 from .system import system_action
+from .upgrade import upgrade as upgrade_checkout
 
 app = typer.Typer(
     name="beton",
@@ -92,9 +93,48 @@ def help_command(ctx: typer.Context) -> None:
         ["clip", "Read the text clipboard", "beton clip"],
         ["today", "Show today’s local notes", "beton today"],
         ["doctor", "Check local capabilities", "beton doctor"],
+        ["version", "Show version or upgrade the official source", "beton version --upgrade"],
     ]
     render_table("Commands", ["Command", "Purpose", "Example"], rows, plain=plain)
     out.print("\nEach command has its own help: [bold]beton <command> --help[/bold]")
+
+
+@app.command("version")
+def version_command(
+    ctx: typer.Context,
+    upgrade: bool = typer.Option(False, "--upgrade", help="Update an official source checkout from GitHub."),
+    yes: bool = typer.Option(False, "--yes", help="Skip the confirmation prompt for the upgrade."),
+) -> None:
+    """Show the installed version or update an official source checkout."""
+    plain = _plain(ctx)
+    out = Console(no_color=plain)
+    if not upgrade:
+        out.print(f"BETON {__version__}")
+        return
+
+    dry_run = _dry_run(ctx)
+    try:
+        preview = upgrade_checkout(dry_run=True)
+        if dry_run:
+            out.print(
+                f"Would check GitHub and update {preview.root} from {preview.before[:8]} "
+                f"using the official {preview.root.name} source checkout."
+            )
+            return
+        if not yes and not typer.confirm(
+            f"Update BETON in {preview.root} from GitHub now?", default=True
+        ):
+            out.print("Upgrade cancelled.")
+            return
+        result = upgrade_checkout(dry_run=False)
+        if result.changed:
+            out.print(f"Updated BETON: {result.before[:8]} → {result.after[:8]}")
+        else:
+            out.print("BETON is already up to date.")
+        out.print("The active Python environment now points at the updated source checkout.")
+    except BetonError as exc:
+        Console(stderr=True, no_color=plain).print(f"✕ {exc}")
+        raise typer.Exit(code=1) from exc
 
 
 @app.command("open")

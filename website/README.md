@@ -1,6 +1,6 @@
 # BETON Landing Page
 
-This directory is an **isolated static frontend** for the Beton CLI `v0.3.4` release. It has no Python imports, server process, API route, database, or dependency on the CLI package. The Vercel configuration at the repository root runs only this directory’s Vite build and publishes only `website/dist`.
+This directory is an **isolated static frontend** for the Beton CLI `v0.4.0` release. It has no Python imports, server process, API route, database, or dependency on the CLI package. The Vercel configuration at the repository root runs only this directory’s Vite build and publishes only `website/dist`.
 
 ## Local preview
 

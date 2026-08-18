@@ -11,7 +11,7 @@
 
 **Your computer, one command away.**
 
-> **Latest release: `v0.3.4`** — [Complete CLI documentation](https://beton-cli.vercel.app/documentation) · [Release notes](https://github.com/itsjustayush/beton-cli/releases/tag/v0.3.4)
+> **Latest release: `v0.4.0`** — [Complete CLI documentation](https://beton-cli.vercel.app/documentation) · [Release notes](https://github.com/itsjustayush/beton-cli/releases/tag/v0.4.0)
 
 BETON is a local-first command layer for everyday computer actions. It provides a short, memorable interface for opening applications and URLs, searching the web, saving notes, starting timers, inspecting the clipboard, checking local capabilities, and controlling selected system actions.
 
@@ -19,12 +19,13 @@ The project is designed to run locally from source. It does not require an accou
 
 ## Current status
 
-This repository contains the current published release, version `0.3.4`. It includes the Python CLI, the deployed landing page, the complete command reference, and clean `/documentation` and `/docs` routes. The repository also contains the latest post-release documentation UI refinements. It currently supports:
+This repository contains the current published release, version `0.4.0`. It includes the Python CLI, the deployed landing page, the complete command reference, and clean `/documentation` and `/docs` routes. The repository also contains the latest post-release documentation UI refinements. It currently supports:
 
 | Command | Purpose |
 |---|---|
 | `beton` | Brand screen and quick examples. |
 | `beton help` | Example-driven help. |
+| `beton version` | Show the installed version or upgrade an official source checkout. |
 | `beton open <target>` | Open a URL, site alias, application, file, or folder. |
 | `beton search <query>` | Search Google by default, with engine/browser/private-mode options. |
 | `beton note <text>` | Save a timestamped local Markdown note. |
@@ -47,25 +48,25 @@ Beton is **not currently published as a PyPI package**. Do not run `pip install 
 
 ### Linux and macOS
 
-The following installs the published `v0.3.4` source release into an isolated virtual environment:
+The following installs the published `v0.4.0` source release into an isolated virtual environment in editable mode, which enables `beton version --upgrade` to find and update the checkout:
 
 ```bash
-git clone --branch v0.3.4 --depth 1 https://github.com/itsjustayush/beton-cli.git
+git clone --branch v0.4.0 --depth 1 https://github.com/itsjustayush/beton-cli.git
 cd beton-cli
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install .
+python -m pip install -e .
 beton doctor
 ```
 
 ### Windows PowerShell
 
 ```powershell
-git clone --branch v0.3.4 --depth 1 https://github.com/itsjustayush/beton-cli.git
+git clone --branch v0.4.0 --depth 1 https://github.com/itsjustayush/beton-cli.git
 Set-Location beton-cli
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install .
+python -m pip install -e .
 beton doctor
 ```
 
@@ -80,6 +81,23 @@ The repository also includes `scripts/install.sh` for Linux/macOS and `scripts/i
 ```bash
 PYTHONPATH=src python -m beton --help
 ```
+
+## Update BETON without a manual reinstall
+
+If BETON was installed from the official GitHub checkout, update it in place with:
+
+```bash
+beton version --upgrade
+```
+
+The command checks that it is running from the official `itsjustayush/beton-cli` repository on the `main` branch, refuses to overwrite uncommitted changes, fast-forwards from `origin/main`, and refreshes the active Python environment from the updated local source. It asks for confirmation before making changes. Use `--yes` on the `version` command to skip the prompt, or preview the operation without changing anything:
+
+```bash
+beton version --upgrade --yes
+beton --dry-run version --upgrade
+```
+
+This workflow is intentionally limited to official source checkouts. It does not turn Beton into a PyPI package and it does not update arbitrary repositories. The existing `beton --version` flag remains a read-only version check.
 
 ## Examples
 
@@ -171,7 +189,7 @@ CLI input
   → Rich or plain renderer
 ```
 
-The next planned additions are reminders, persistent background scheduling, richer file and process operations, media controls, network and hardware commands, richer platform adapters, interactive launcher mode, and standalone binaries. The current `v0.3.4` release focuses on a stable local CLI plus a complete, deployed documentation surface.
+The next planned additions are reminders, persistent background scheduling, richer file and process operations, media controls, network and hardware commands, richer platform adapters, interactive launcher mode, and standalone binaries. The current `v0.4.0` release focuses on a stable local CLI plus a complete, deployed documentation surface.
 
 ## Privacy
 

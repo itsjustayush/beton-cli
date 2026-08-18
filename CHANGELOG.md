@@ -2,6 +2,16 @@
 
 All notable Beton CLI releases are documented here. The project follows Semantic Versioning while it remains below `1.0.0`.
 
+## 0.4.0 — Safe source-checkout upgrades
+
+- Added `beton version` as a read-only subcommand that reports the installed version.
+- Added `beton version --upgrade` to fast-forward an official `itsjustayush/beton-cli` checkout from `origin/main` and refresh the active Python environment without a manual reinstall.
+- Added confirmation by default, `--yes` for explicit non-interactive confirmation, and `--dry-run` preview support.
+- Refused upgrades on non-official remotes, non-`main` branches, dirty working trees, or non-fast-forward histories.
+- Added rollback to the previous commit if refreshing the active environment fails.
+- Documented the workflow in the README and deployed command reference.
+- Published as the current [GitHub release v0.4.0](https://github.com/itsjustayush/beton-cli/releases/tag/v0.4.0).
+
 ## 0.3.4 — Corrected source installation and documentation
 
 - Corrected the README and deployed documentation to state that Beton is not currently distributed as a PyPI package.
