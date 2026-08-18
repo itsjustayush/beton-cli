@@ -1,5 +1,14 @@
 # BETON
 
+```text
+██████╗ ███████╗████████╗ ██████╗ ███╗   ██╗     ██████╗██╗     ██╗
+██╔══██╗██╔════╝╚══██╔══╝██╔═══██╗████╗  ██║    ██╔════╝██║     ██║
+██████╔╝█████╗     ██║   ██║   ██║██╔██╗ ██║    ██║     ██║     ██║
+██╔══██╗██╔══╝     ██║   ██║   ██║██║╚██╗██║    ██║     ██║     ██║
+██████╔╝███████╗   ██║   ╚██████╔╝██║ ╚████║    ╚██████╗███████╗██║
+╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝     ╚═════╝╚══════╝╚═╝
+```
+
 **Your computer, one command away.**
 
 > **Latest release: `v0.3.4`** — [Complete CLI documentation](https://beton-cli.vercel.app/documentation) · [Release notes](https://github.com/itsjustayush/beton-cli/releases/tag/v0.3.4)

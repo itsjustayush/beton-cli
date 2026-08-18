@@ -9,6 +9,14 @@ from rich.table import Table
 from .models import ActionResult, ResultStatus
 
 
+BETON_ASCII = """██████╗ ███████╗████████╗ ██████╗ ███╗   ██╗     ██████╗██╗     ██╗
+██╔══██╗██╔════╝╚══██╔══╝██╔═══██╗████╗  ██║    ██╔════╝██║     ██║
+██████╔╝█████╗     ██║   ██║   ██║██╔██╗ ██║    ██║     ██║     ██║
+██╔══██╗██╔══╝     ██║   ██║   ██║██║╚██╗██║    ██║     ██║     ██║
+██████╔╝███████╗   ██║   ╚██████╔╝██║ ╚████║    ╚██████╗███████╗██║
+╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═══╝     ╚═════╝╚══════╝╚═╝"""
+
+
 def console(plain: bool = False) -> Console:
     return Console(no_color=plain, highlight=False)
 
@@ -38,9 +46,9 @@ def render_result(result: ActionResult, *, plain: bool = False) -> None:
 def render_brand(*, plain: bool = False) -> None:
     out = console(plain)
     if plain:
-        out.print("BETON\nYour computer, one command away.")
+        out.print(f"{BETON_ASCII}\nYour computer, one command away.")
         return
-    out.print(Panel.fit("[bold white]BETON[/bold white]\n[dim]Your computer, one command away.[/dim]", border_style="bright_black"))
+    out.print(Panel.fit(f"[bold white]{BETON_ASCII}[/bold white]\n[dim]Your computer, one command away.[/dim]", border_style="bright_black"))
 
 
 def render_table(title: str, columns: list[str], rows: list[list[str]], *, plain: bool = False) -> None:
