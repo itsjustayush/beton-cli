@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import shutil
 import subprocess
 import sys
@@ -100,7 +101,7 @@ class SubprocessPlatformAdapter(PlatformAdapter):
         return ActionResult(ResultStatus.SUCCESS, f"Opened {path}.")
 
     def launch_app(self, target: str, dry_run: bool = False) -> ActionResult:
-        executable = shutil.which(target)
+        executable = self._application_executable(target)
         if executable:
             if dry_run:
                 return ActionResult(ResultStatus.DRY_RUN, f"Would launch {target}.", detail=executable)
@@ -109,7 +110,42 @@ class SubprocessPlatformAdapter(PlatformAdapter):
             except OSError as exc:
                 return ActionResult(ResultStatus.DENIED, f"Could not launch {target}: {exc}")
             return ActionResult(ResultStatus.SUCCESS, f"Opened {target}.")
-        return ActionResult(ResultStatus.UNAVAILABLE, f"Could not find application '{target}'.")
+        return ActionResult(
+            ResultStatus.UNAVAILABLE,
+            f"Could not find application '{target}'. Install it or pass its executable path.",
+        )
+
+    def _application_executable(self, target: str) -> str | None:
+        executable = shutil.which(target)
+        if executable:
+            return executable
+        if not sys.platform.startswith("win"):
+            return None
+
+        roots = [
+            Path(os.environ.get("PROGRAMFILES", "")),
+            Path(os.environ.get("PROGRAMFILES(X86)", "")),
+            Path(os.environ.get("LOCALAPPDATA", "")),
+            Path(os.environ.get("APPDATA", "")),
+        ]
+        known_paths = {
+            "chrome": [
+                Path("Google/Chrome/Application/chrome.exe"),
+            ],
+            "code": [
+                Path("Microsoft VS Code/Code.exe"),
+                Path("Programs/Microsoft VS Code/Code.exe"),
+            ],
+            "spotify": [
+                Path("Spotify/Spotify.exe"),
+            ],
+        }
+        for relative in known_paths.get(target.lower(), []):
+            for root in roots:
+                candidate = root / relative
+                if candidate.is_file():
+                    return str(candidate)
+        return None
 
     def capabilities(self) -> list[Capability]:
         return [

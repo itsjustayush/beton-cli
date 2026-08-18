@@ -193,7 +193,7 @@
     <header class="topbar">
       <button class="icon-button mobile-menu" id="menu-toggle" aria-label="Toggle navigation">☰</button>
       <a class="brand" href="#top"><span class="brand-mark"></span>Beton</a>
-      <div class="topbar-context"><a class="back-link" href="/">← Landing page</a><span class="topbar-section">CLI documentation / v0.4.1</span></div>
+      <div class="topbar-context"><a class="back-link" href="/">← Landing page</a><span class="topbar-section">CLI documentation / v0.4.2</span></div>
       <div class="topbar-actions">
         <button class="icon-button" id="search-toggle" aria-label="Search documentation">⌕ <span>Search</span></button>
         <button class="icon-button" id="theme-toggle" aria-label="Toggle theme">◐</button>
@@ -216,10 +216,10 @@
             <p class="kicker">Local-first command layer</p>
             <h1>Beton CLI Docs</h1>
             <p class="lead">Beton is a local-first command-line tool for opening apps and URLs, searching the web, saving notes, running timers, reading the clipboard, inspecting the machine, and controlling selected system actions.</p>
-            <p>Everything runs on your computer. There is no account, server, API key, or cloud storage requirement for core commands. Beton is distributed as source from the official GitHub repository. Clone the tagged <code>v0.4.1</code> release, install it into a virtual environment, and then use the short <code>beton</code> command from Windows, macOS, or Linux.</p>
+            <p>Everything runs on your computer. There is no account, server, API key, or cloud storage requirement for core commands. Beton is distributed as source from the official GitHub repository. Clone the tagged <code>v0.4.2</code> release, install it into a virtual environment, and then use the short <code>beton</code> command from Windows, macOS, or Linux.</p>
 
             <div class="hero-grid">
-              <a class="card" href="#installation"><span class="card-icon">↓</span><h3>Installation</h3><p>Clone the official v0.4.1 GitHub release, install locally in a virtual environment, then run <code>beton doctor</code>.</p></a>
+              <a class="card" href="#installation"><span class="card-icon">↓</span><h3>Installation</h3><p>Clone the official v0.4.2 GitHub release, install locally in a virtual environment, then run <code>beton doctor</code>.</p></a>
               <a class="card" href="#quickstart"><span class="card-icon">→</span><h3>Quickstart</h3><p>Go from zero to your first open, search, note, timer, and diagnostics command.</p></a>
               <a class="card" href="#open"><span class="card-icon">↗</span><h3>Command reference</h3><p>Explore every command, argument, flag, resolution rule, and safety boundary.</p></a>
               <a class="card" href="#global-flags"><span class="card-icon">⌘</span><h3>Guides &amp; flags</h3><p>Learn browser selection, dry runs, plain output, storage, aliases, and troubleshooting.</p></a>
@@ -229,25 +229,30 @@
           <section id="installation">
             <h2>Installation <a class="anchor-link" href="#installation">#</a></h2>
             <p>Beton requires Python 3.10 or later. It is not currently distributed as a PyPI package: use the official tagged source release from GitHub and install it locally into a virtual environment. Do not run <code>pip install beton</code> or <code>pip install beton-cli</code>.</p>
-            <div class="callout note"><strong>Official source release</strong><p>Use <a href="https://github.com/itsjustayush/beton-cli/releases/tag/v0.4.1" target="_blank" rel="noreferrer">Beton CLI v0.4.1 on GitHub</a>. The commands below install from the cloned repository, not from PyPI.</p></div>
+            <div class="callout note"><strong>Official source release</strong><p>Use <a href="https://github.com/itsjustayush/beton-cli/releases/tag/v0.4.2" target="_blank" rel="noreferrer">Beton CLI v0.4.2 on GitHub</a>. The commands below install from the cloned repository, not from PyPI.</p></div>
             <h3>Prerequisites <a class="anchor-link" href="#prerequisites">#</a></h3>
             <p>Check that Python and pip are available in the shell where you plan to install Beton.</p>
             <div class="code-wrap"><div class="code-head"><span>Check prerequisites</span><button class="copy">Copy</button></div><pre><code>python --version
 python3 --version
 pip --version</code></pre></div>
             <h3>Install the published source release <a class="anchor-link" href="#install-from-release">#</a></h3>
-            <div class="code-wrap" data-lang="shell"><div class="code-head"><span>Linux / macOS · v0.4.1</span><button class="copy">Copy</button></div><pre><code>git clone --branch v0.4.1 --depth 1 https://github.com/itsjustayush/beton-cli.git
+            <div class="code-wrap" data-lang="shell"><div class="code-head"><span>Linux / macOS · v0.4.2</span><button class="copy">Copy</button></div><pre><code>git clone --branch v0.4.2 --depth 1 https://github.com/itsjustayush/beton-cli.git
 cd beton-cli
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e .
 beton doctor</code></pre></div>
-            <div class="code-wrap" data-lang="powershell"><div class="code-head"><span>Windows PowerShell · v0.4.1 · no activation required</span><button class="copy">Copy</button></div><pre><code>git clone --branch v0.4.1 --depth 1 https://github.com/itsjustayush/beton-cli.git
+            <div class="code-wrap" data-lang="powershell"><div class="code-head"><span>Windows PowerShell · v0.4.2 · one-command installer</span><button class="copy">Copy</button></div><pre><code>powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\install.ps1
+
+# Open a new VS Code / PowerShell terminal
+beton doctor
+beton --version</code></pre></div>
+            <div class="code-wrap" data-lang="powershell"><div class="code-head"><span>Windows PowerShell · direct executable fallback</span><button class="copy">Copy</button></div><pre><code>git clone --branch v0.4.2 --depth 1 https://github.com/itsjustayush/beton-cli.git
 Set-Location beton-cli
 py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e .
 .\.venv\Scripts\beton.exe doctor</code></pre></div>
-            <p>The install command above uses pip only as the local build installer for the cloned source tree. It does not download Beton from PyPI. The editable install lets <code>beton version --upgrade</code> map the command back to this checkout later. If Git prints a nonfatal annotated-tag warning but exits successfully and switches to a commit, the shallow release checkout succeeded.</p>
+            <p>The installer uses pip only as the local build installer for the cloned source tree. It does not download Beton from PyPI. It creates a user-level <code>beton</code> command shim in <code>%USERPROFILE%\bin</code> and adds that directory to your user PATH. Open a new terminal after installation. If Git prints a nonfatal annotated-tag warning but exits successfully and switches to a commit, the shallow release checkout succeeded.</p>
             <h3>Development install <a class="anchor-link" href="#install-development">#</a></h3>
             <div class="code-wrap"><div class="code-head"><span>Optional test dependencies</span><button class="copy">Copy</button></div><pre><code>python -m pip install -e ".[dev]"</code></pre></div>
             <p>For a quick checkout without installing an editable package, run the module directly from the repository:</p>
@@ -428,16 +433,19 @@ beton open --help
 beton search --help
 beton version
 beton --version
-# Output example: BETON 0.4.1</code></pre></div>
-            <p><code>beton help</code> presents a compact table of core commands and examples. <code>--help</code> shows command-specific arguments and flags. <code>beton version</code> prints the installed version without changing anything.</p>
+# Output example: BETON 0.4.2</code></pre></div>
+            <p><code>beton help</code> presents a compact table of core commands and examples. <code>--help</code> shows command-specific arguments and flags. <code>beton version</code> prints the installed version without changing anything. Running <code>beton</code> by itself shows the brand screen; <code>beton beton</code> is not a valid command.</p>
             <h3><code>beton version --upgrade</code> <a class="anchor-link" href="#version-upgrade">#</a></h3>
             <p>When Beton was installed from the official GitHub source checkout, this command updates the checkout and refreshes the active Python environment without a manual reinstall:</p>
             <div class="code-wrap" data-lang="shell"><div class="code-head"><span>Upgrade safely · Linux / macOS</span><button class="copy">Copy</button></div><pre><code>beton version --upgrade
 beton version --upgrade --yes
 beton --dry-run version --upgrade</code></pre></div>
-            <div class="code-wrap" data-lang="powershell"><div class="code-head"><span>Upgrade safely · Windows PowerShell</span><button class="copy">Copy</button></div><pre><code>.\.venv\Scripts\beton.exe version --upgrade
-.\.venv\Scripts\beton.exe version --upgrade --yes
-.\.venv\Scripts\beton.exe --dry-run version --upgrade</code></pre></div>
+            <div class="code-wrap" data-lang="powershell"><div class="code-head"><span>Upgrade safely · Windows PowerShell</span><button class="copy">Copy</button></div><pre><code>beton version --upgrade
+beton version --upgrade --yes
+beton --dry-run version --upgrade
+
+# No-PATH fallback
+.\.venv\Scripts\beton.exe version --upgrade</code></pre></div>
             <p>The upgrade is limited to the official <code>itsjustayush/beton-cli</code> remote on the <code>main</code> branch. It refuses to overwrite uncommitted changes, uses a fast-forward-only pull, asks for confirmation by default, and reinstalls the updated local source into the active Python environment. <code>--dry-run</code> previews the operation without changing the checkout; <code>--yes</code> skips the confirmation prompt.</p>
           </section>
 

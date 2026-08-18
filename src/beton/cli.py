@@ -97,6 +97,7 @@ def help_command(ctx: typer.Context) -> None:
     ]
     render_table("Commands", ["Command", "Purpose", "Example"], rows, plain=plain)
     out.print("\nEach command has its own help: [bold]beton <command> --help[/bold]")
+    out.print("Run [bold]beton[/bold] by itself for the brand screen; do not append [bold]beton[/bold] as a subcommand.")
 
 
 @app.command("version")
@@ -153,9 +154,12 @@ def open_command(
         elif resolved.kind == "path":
             result = adapter.open_path(Path(resolved.value), _dry_run(ctx))
         else:
-            app_target = {"chrome": "google-chrome", "code": "code", "spotify": "spotify"}.get(
-                resolved.value.lower(), resolved.value
-            )
+            if platform.system() == "Windows":
+                app_target = resolved.value
+            else:
+                app_target = {"chrome": "google-chrome", "code": "code", "spotify": "spotify"}.get(
+                    resolved.value.lower(), resolved.value
+                )
             result = adapter.launch_app(app_target, _dry_run(ctx))
         _finish(result, plain=_plain(ctx))
     except BetonError as exc:

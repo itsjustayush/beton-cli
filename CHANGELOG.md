@@ -2,6 +2,16 @@
 
 All notable Beton CLI releases are documented here. The project follows Semantic Versioning while it remains below `1.0.0`.
 
+## 0.4.2 — Simplified Windows workflow
+
+- Added a one-command `scripts/install.ps1` setup path that works without activating `Activate.ps1`.
+- Added a user-level `%USERPROFILE%\\bin\\beton.cmd` shim so a new terminal can run `beton` without a long `.venv\\Scripts\\beton.exe` path.
+- Added `--NoPath` to the installer for users who prefer direct virtual-environment executables.
+- Improved Windows resolution for common `chrome`, `code`, and `spotify` installations.
+- Added clearer `beton help` guidance explaining that `beton` alone shows the brand screen and `beton beton` is invalid.
+- Added tests for Windows Chrome path resolution.
+- Published as the current [GitHub release v0.4.2](https://github.com/itsjustayush/beton-cli/releases/tag/v0.4.2).
+
 ## 0.4.1 — Windows-safe source installation
 
 - Removed mandatory PowerShell activation from the Windows installation path.

@@ -1,10 +1,14 @@
 from datetime import datetime
+import shutil
+import sys
+from pathlib import Path
 
 import pytest
 
 from beton.search import build_search_url
 from beton.storage.notes import add_note, today_notes
 from beton.timer import format_duration, parse_duration
+from beton.platform.base import SubprocessPlatformAdapter
 
 
 def test_search_url_encodes_query():
@@ -39,3 +43,18 @@ def test_note_storage_and_today_filter(tmp_path, monkeypatch):
     assert path.exists()
     assert "finish physics DPP" in path.read_text(encoding="utf-8")
     assert len(today_notes()) == 1
+
+
+def test_windows_chrome_path_resolution(tmp_path, monkeypatch):
+    chrome = tmp_path / "Google" / "Chrome" / "Application" / "chrome.exe"
+    chrome.parent.mkdir(parents=True)
+    chrome.write_text("placeholder", encoding="utf-8")
+    monkeypatch.setattr(sys, "platform", "win32")
+    monkeypatch.setattr(shutil, "which", lambda target: None)
+    monkeypatch.setenv("PROGRAMFILES", str(tmp_path))
+    monkeypatch.setenv("PROGRAMFILES(X86)", "")
+    monkeypatch.setenv("LOCALAPPDATA", "")
+    monkeypatch.setenv("APPDATA", "")
+
+    adapter = SubprocessPlatformAdapter()
+    assert adapter._application_executable("chrome") == str(chrome)

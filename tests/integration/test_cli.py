@@ -44,7 +44,7 @@ def test_search_private_default_browser_is_rejected():
 def test_version_command_preserves_version_output():
     result = runner.invoke(app, ["--plain", "version"])
     assert result.exit_code == 0
-    assert result.stdout.strip() == "BETON 0.4.1"
+    assert result.stdout.strip() == "BETON 0.4.2"
 
 
 def test_version_upgrade_dry_run(monkeypatch, tmp_path):
