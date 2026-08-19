@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from dataclasses import dataclass
@@ -102,8 +103,31 @@ def _install_current_checkout(root: Path) -> None:
         )
 
 
+def _upgrade_npm_runtime(*, dry_run: bool = False) -> UpgradeResult:
+    """Refresh an npm-installed Beton wrapper through the npm registry."""
+
+    root = Path("npm global package")
+    before = os.environ.get("BETON_NPM_VERSION", "installed")
+    if dry_run:
+        return UpgradeResult(root=root, before=before, after=before, changed=False, dry_run=True)
+
+    npm = "npm.cmd" if sys.platform == "win32" else "npm"
+    command = [npm, "install", "--global", "beton-cli@latest"]
+    try:
+        result = subprocess.run(command, check=False, capture_output=True, text=True)
+    except OSError as exc:
+        raise BetonError(f"npm is required for npm-installed upgrades but could not be started: {exc}") from exc
+    if result.returncode != 0:
+        detail = (result.stderr or result.stdout).strip()
+        raise BetonError(f"npm upgrade failed. Run `{' '.join(command)}` manually.\n{detail}")
+    return UpgradeResult(root=root, before=before, after="latest", changed=True)
+
+
 def upgrade(*, dry_run: bool = False) -> UpgradeResult:
-    """Fast-forward the official source checkout and refresh the active environment."""
+    """Refresh the active Beton installation through npm or the official Git checkout."""
+
+    if os.environ.get("BETON_NPM_RUNTIME") == "1":
+        return _upgrade_npm_runtime(dry_run=dry_run)
 
     root = repository_root()
     branch = _assert_official_checkout(root)

@@ -11,7 +11,7 @@
 
 **Your computer, one command away.**
 
-> **Latest release: `v0.4.3`** — [Complete CLI documentation](https://beton-cli.vercel.app/documentation) · [Release notes](https://github.com/itsjustayush/beton-cli/releases/tag/v0.4.3)
+> **Latest release: `v0.5.0`** — [Complete CLI documentation](https://beton-cli.vercel.app/documentation) · [Release notes](https://github.com/itsjustayush/beton-cli/releases/tag/v0.5.0)
 
 BETON is a local-first command layer for everyday computer actions. It provides a short, memorable interface for opening applications and URLs, searching the web, saving notes, starting timers, inspecting the clipboard, checking local capabilities, and controlling selected system actions.
 
@@ -19,7 +19,7 @@ The project is designed to run locally from source. It does not require an accou
 
 ## Current status
 
-This repository contains the current published release, version `0.4.3`. It includes the Python CLI, the deployed landing page, the complete command reference, and clean `/documentation` and `/docs` routes. The repository also contains the latest post-release documentation UI refinements. It currently supports:
+This repository contains the current published release, version `0.5.0`. It includes the Python CLI, the npm distribution wrapper, the deployed landing page, the complete command reference, and clean `/documentation` and `/docs` routes. The repository also contains the latest post-release documentation UI refinements. It currently supports:
 
 | Command | Purpose |
 |---|---|
@@ -42,16 +42,30 @@ This repository contains the current published release, version `0.4.3`. It incl
 
 Read the complete, versioned command reference at [beton-cli.vercel.app/documentation](https://beton-cli.vercel.app/documentation), or use the shorter [beton-cli.vercel.app/docs](https://beton-cli.vercel.app/docs) alias. Release history is available on the [GitHub Releases page](https://github.com/itsjustayush/beton-cli/releases).
 
-## Installation from the official GitHub release
+## Installation with npm (recommended)
 
-Beton is **not currently published as a PyPI package**. Do not run `pip install beton` or `pip install beton-cli`. Download the official tagged source release from the [Beton CLI GitHub repository](https://github.com/itsjustayush/beton-cli) instead.
+The primary one-line installation path is the npm distribution wrapper:
+
+```bash
+npm install -g beton-cli
+beton doctor
+beton --version
+```
+
+The wrapper requires Node.js 18+ with npm and Python 3.10+. It downloads the matching official Beton source release, creates an isolated Python runtime in the user data directory, and exposes the `beton` command globally. Git, `Activate.ps1`, and a permanent PowerShell execution-policy change are not required. On Windows, run the same commands from ordinary PowerShell or Command Prompt.
+
+For an npm-installed instance, update Beton with `beton version --upgrade`; this refreshes the npm wrapper and its Python runtime.
+
+## Installation from the official GitHub release (alternative)
+
+Beton is **not currently published as a PyPI package**. Do not run `pip install beton` or `pip install beton-cli`. The npm wrapper is the recommended distribution path; users who prefer a contributor-style checkout can download the official tagged source release from the [Beton CLI GitHub repository](https://github.com/itsjustayush/beton-cli).
 
 ### Linux and macOS
 
-The following installs the published `v0.4.3` source release into an isolated virtual environment in editable mode, which enables `beton version --upgrade` to find and update the checkout:
+The following installs the published `v0.5.0` source release into an isolated virtual environment in editable mode, which enables `beton version --upgrade` to find and update the checkout:
 
 ```bash
-git clone --branch v0.4.3 --depth 1 https://github.com/itsjustayush/beton-cli.git
+git clone --branch v0.5.0 --depth 1 https://github.com/itsjustayush/beton-cli.git
 cd beton-cli
 python3 -m venv .venv
 source .venv/bin/activate
@@ -79,7 +93,7 @@ beton --version
 If you do not want to add a PATH shim, use the direct-executable workflow:
 
 ```powershell
-git clone --branch v0.4.3 --depth 1 https://github.com/itsjustayush/beton-cli.git
+git clone --branch v0.5.0 --depth 1 https://github.com/itsjustayush/beton-cli.git
 Set-Location beton-cli
 py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e .
@@ -96,13 +110,20 @@ python -m pip install -e ".[dev]"
 .\.venv\Scripts\python.exe -m pip install -e ".[dev]"
 ```
 
-If `git clone --branch v0.4.3 --depth 1` prints a warning that the annotated tag is not a commit but then exits successfully and switches to a commit, the checkout succeeded; this is a nonfatal shallow-clone message. The repository also includes `scripts/install.sh` for Linux/macOS and `scripts/install.ps1` for PowerShell. For a quick checkout without installing the package, run the module directly from the repository:
+If `git clone --branch v0.5.0 --depth 1` prints a warning that the annotated tag is not a commit but then exits successfully and switches to a commit, the checkout succeeded; this is a nonfatal shallow-clone message. The repository also includes `scripts/install.sh` for Linux/macOS and `scripts/install.ps1` for PowerShell. For a quick checkout without installing the package, run the module directly from the repository:
 
 ```bash
 PYTHONPATH=src python -m beton --help
 ```
 
 ## Update BETON without a manual reinstall
+
+If BETON was installed with npm, update it in place with:
+
+```bash
+beton version --upgrade
+beton version --upgrade --yes
+```
 
 If BETON was installed from the official GitHub checkout, update it in place with:
 
@@ -133,7 +154,7 @@ beton version --upgrade --yes
 beton --dry-run version --upgrade
 ```
 
-This workflow is intentionally limited to official source checkouts. It does not turn Beton into a PyPI package and it does not update arbitrary repositories. The existing `beton --version` flag remains a read-only version check.
+The npm workflow updates the global npm wrapper and its isolated Python runtime. The source workflow remains intentionally limited to the official checkout; neither workflow turns Beton into a PyPI package or updates arbitrary repositories. The existing `beton --version` flag remains a read-only version check.
 
 ## Examples
 
@@ -225,7 +246,7 @@ CLI input
   → Rich or plain renderer
 ```
 
-The next planned additions are reminders, persistent background scheduling, richer file and process operations, media controls, network and hardware commands, richer platform adapters, interactive launcher mode, and standalone binaries. The current `v0.4.3` release focuses on a stable local CLI plus a complete, deployed documentation surface.
+The next planned additions are reminders, persistent background scheduling, richer file and process operations, media controls, network and hardware commands, richer platform adapters, interactive launcher mode, and standalone binaries. The current `v0.5.0` release focuses on a stable local CLI plus a complete, deployed documentation surface.
 
 ## Privacy
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0 — npm distribution channel
+
+- Added the official `beton-cli` npm wrapper for `npm install -g beton-cli`.
+- Added cross-platform bootstrap logic that downloads the matching GitHub release, creates an isolated Python virtual environment, and exposes the `beton` command without requiring Git or PowerShell activation.
+- Added npm-aware `beton version --upgrade` behavior for globally installed instances.
+- Added package-specific README and MIT license files.
+- Made npm the recommended installation path while retaining the official GitHub source workflow for contributors.
+- Updated version metadata, examples, landing-page labels, and deployed documentation to v0.5.0.
+
 All notable Beton CLI releases are documented here. The project follows Semantic Versioning while it remains below `1.0.0`.
 
 ## 0.4.3 — Reliable tag-checkout upgrades

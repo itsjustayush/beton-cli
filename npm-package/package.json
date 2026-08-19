@@ -1,0 +1,33 @@
+{
+  "name": "beton-cli",
+  "version": "0.5.0",
+  "description": "BETON — local-first command tools for your computer.",
+  "license": "MIT",
+  "author": "Ayush Bhattacharya <info.cometlabs@gmail.com>",
+  "homepage": "https://beton-cli.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsjustayush/beton-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itsjustayush/beton-cli/issues"
+  },
+  "keywords": ["cli", "productivity", "local-first", "python", "beton"],
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "beton": "bin/beton.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "postinstall": "node scripts/install.js",
+    "update": "node scripts/update.js"
+  }
+}

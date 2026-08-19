@@ -116,18 +116,29 @@ def version_command(
     dry_run = _dry_run(ctx)
     try:
         preview = upgrade_checkout(dry_run=True)
-        if dry_run:
-            out.print(
-                f"Would check GitHub and update {preview.root} from {preview.before[:8]} "
-                f"using the official {preview.root.name} source checkout."
-            )
-            return
-        if not yes and not typer.confirm(
-            f"Update BETON in {preview.root} from GitHub now?", default=True
-        ):
-            out.print("Upgrade cancelled.")
-            return
+        if preview.root == Path("npm global package"):
+            if dry_run:
+                out.print("Would update the npm-installed BETON wrapper from the npm registry.")
+                return
+            if not yes and not typer.confirm("Update the npm-installed BETON wrapper now?", default=True):
+                out.print("Upgrade cancelled.")
+                return
+        else:
+            if dry_run:
+                out.print(
+                    f"Would check GitHub and update {preview.root} from {preview.before[:8]} "
+                    f"using the official {preview.root.name} source checkout."
+                )
+                return
+            if not yes and not typer.confirm(
+                f"Update BETON in {preview.root} from GitHub now?", default=True
+            ):
+                out.print("Upgrade cancelled.")
+                return
         result = upgrade_checkout(dry_run=False)
+        if result.root == Path("npm global package"):
+            out.print("Updated the npm-installed BETON wrapper to the latest release.")
+            return
         if result.changed:
             out.print(f"Updated BETON: {result.before[:8]} → {result.after[:8]}")
         else:
